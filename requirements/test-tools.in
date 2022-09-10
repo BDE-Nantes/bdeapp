@@ -1,0 +1,8 @@
+-c base.txt
+
+# Dependencies only relevant for (unit) testing
+coverage
+django-webtest
+factory-boy
+freezegun
+responses

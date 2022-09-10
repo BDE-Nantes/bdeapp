@@ -1,0 +1,14 @@
+-c ci.txt
+
+# Helpers
+pip-tools
+bump2version
+gitpython
+
+# Code formatting
+black[colorama]
+isort[colors]
+
+# Documentation
+sphinx
+sphinx_rtd_theme
