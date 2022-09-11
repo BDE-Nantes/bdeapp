@@ -15,6 +15,7 @@ django==3.2.15
     #   -r requirements/base.in
     #   django-axes
     #   django-rosetta
+    #   django-solo
 django-axes==5.39.0
     # via -r requirements/base.in
 django-cleanup==6.0.0
@@ -22,6 +23,8 @@ django-cleanup==6.0.0
 django-ipware==4.0.2
     # via django-axes
 django-rosetta==0.9.8
+    # via -r requirements/base.in
+django-solo==2.0.0
     # via -r requirements/base.in
 idna==3.3
     # via requests

@@ -10,6 +10,7 @@ django ~= 3.2
 django-axes
 django-rosetta
 django-cleanup
+django-solo
 
 # API libraries
 # djangorestframework
