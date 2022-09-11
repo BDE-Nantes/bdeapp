@@ -81,9 +81,9 @@ development machine.
 
 8. Create a .env file with database settings. See dotenv.example for an example.
 
-    .. code-block:: bash
+   .. code-block:: bash
 
-        $ cp dotenv.example .env
+       $ cp dotenv.example .env
 
 
 **Note:** If you are making local, machine specific, changes, add them to
