@@ -1,5 +1,5 @@
 import fnmatch
-from typing import Container
+from typing import Optional
 
 from django.core.exceptions import ValidationError
 from django.db.models.fields.files import ImageFieldFile
@@ -44,7 +44,7 @@ class FileValidator(object):
     }
 
     def __init__(
-        self, max_size: int | None = None, min_size: int | None = None, content_types=()
+        self, max_size: Optional[int] = None, min_size: Optional[int] = None, content_types=()
     ):
         self.max_size = max_size
         self.min_size = min_size
