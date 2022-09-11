@@ -81,6 +81,8 @@ development machine.
 
 8. Create a .env file with database settings. See dotenv.example for an example.
 
+    .. code-block:: bash
+
         $ cp dotenv.example .env
 
 
@@ -139,10 +141,6 @@ file or as part of the ``(post)activate`` of your virtualenv.
 * ``DB_PASSWORD``: password to use to connect to the database. Defaults to ``bdeapp``.
 * ``DB_HOST``: database host. Defaults to ``localhost``
 * ``DB_PORT``: database port. Defaults to ``5432``.
-
-* ``SENTRY_DSN``: the DSN of the project in Sentry. If set, enabled Sentry SDK as
-  logger and will send errors/logging to Sentry. If unset, Sentry SDK will be
-  disabled.
 
 
 All settings for the project can be found in
