@@ -3,9 +3,14 @@ import functools
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+from bdeapp.siteconfig.models import SiteConfiguration
 from bdeapp.utils.models import UuidMixin
 from bdeapp.utils.storage import uuid_path
 from bdeapp.utils.validators import FileValidator
+
+
+def get_max_file_size():
+    return SiteConfiguration.get_solo().max_proof_filesize * 1024 * 1024
 
 
 class FamilyStatus(models.Model):
@@ -93,7 +98,7 @@ class Proof(UuidMixin):
         upload_to=functools.partial(uuid_path, suffix="proofs/"),
         validators=[
             FileValidator(
-                max_size=1024 * 1024 * 100, content_types=["video/*", "image/*"]
+                max_size=get_max_file_size, content_types=["video/*", "image/*"]
             )
         ],
     )

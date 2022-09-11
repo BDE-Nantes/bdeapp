@@ -1,5 +1,5 @@
 import fnmatch
-from typing import Optional
+from typing import Callable, Optional, Union
 
 from django.core.exceptions import ValidationError
 from django.db.models.fields.files import ImageFieldFile
@@ -45,8 +45,8 @@ class FileValidator(object):
 
     def __init__(
         self,
-        max_size: Optional[int] = None,
-        min_size: Optional[int] = None,
+        max_size: Optional[Union[int, Callable[[], int]]] = None,
+        min_size: Optional[Union[int, Callable[[], int]]] = None,
         content_types=(),
     ):
         self.max_size = max_size
@@ -54,22 +54,25 @@ class FileValidator(object):
         self.content_types = content_types
 
     def __call__(self, data):
-        if self.max_size is not None and data.size > self.max_size:
+        max_size = self.max_size() if callable(self.max_size) else self.max_size
+        min_size = self.min_size() if callable(self.min_size) else self.min_size
+
+        if max_size is not None and data.size > max_size:
             raise ValidationError(
                 self.error_messages["max_size"],
                 code="max_size",
                 params={
-                    "max_size": filesizeformat(self.max_size),
+                    "max_size": filesizeformat(max_size),
                     "size": filesizeformat(data.size),
                 },
             )
 
-        if self.min_size is not None and data.size < self.min_size:
+        if min_size is not None and data.size < min_size:
             raise ValidationError(
                 self.error_messages["min_size"],
                 code="min_size",
                 params={
-                    "min_size": filesizeformat(self.min_size),
+                    "min_size": filesizeformat(min_size),
                     "size": filesizeformat(data.size),
                 },
             )

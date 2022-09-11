@@ -5,9 +5,9 @@ from django.db import models
 from django.forms import ValidationError
 from django.utils.translation import gettext_lazy as _
 
+from bdeapp.siteconfig.models import SiteConfiguration
 from bdeapp.utils.models import UuidMixin
 from bdeapp.utils.storage import uuid_path
-from bdeapp.siteconfig.models import SiteConfiguration
 from bdeapp.utils.validators import ImageSizeValidator
 
 
