@@ -20,7 +20,6 @@ SECRET_KEY = config("SECRET_KEY")
 
 # NEVER run with DEBUG=True in production-like environments
 DEBUG = config("DEBUG", default=False)
-DEBUG = False
 
 # = domains we're running on
 ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="", split=True)
