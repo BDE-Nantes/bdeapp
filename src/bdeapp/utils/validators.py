@@ -44,7 +44,10 @@ class FileValidator(object):
     }
 
     def __init__(
-        self, max_size: Optional[int] = None, min_size: Optional[int] = None, content_types=()
+        self,
+        max_size: Optional[int] = None,
+        min_size: Optional[int] = None,
+        content_types=(),
     ):
         self.max_size = max_size
         self.min_size = min_size
