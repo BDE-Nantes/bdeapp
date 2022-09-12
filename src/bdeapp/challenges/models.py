@@ -1,12 +1,16 @@
 import functools
 
+from django.core.validators import MinValueValidator
 from django.db import models
+from django.forms import ValidationError
 from django.utils.translation import gettext_lazy as _
 
 from bdeapp.siteconfig.models import SiteConfiguration
 from bdeapp.utils.models import UuidMixin
 from bdeapp.utils.storage import uuid_path
 from bdeapp.utils.validators import FileValidator
+
+MAX_VALIDATIONS_MINIMUM = 1
 
 
 def get_max_file_size():
@@ -40,6 +44,18 @@ class FamilyStatus(models.Model):
     def clean(self):
         if not self.enabled:
             self.validations = 0
+        if self.validations > self.challenge.max_validations:
+            raise ValidationError(
+                _("You have reached the maximum number of validations (%(max)s)."),
+                params={"max": self.challenge.max_validations},
+            )
+
+    def save(self):
+        if not self.enabled:
+            self.validations = 0
+        if self.validations > self.challenge.max_validations:
+            return
+        super().save()
 
 
 class Challenge(UuidMixin):
@@ -52,6 +68,11 @@ class Challenge(UuidMixin):
         null=True,
     )
     points = models.PositiveIntegerField(_("Points"))
+    max_validations = models.PositiveIntegerField(
+        _("Maximum number of validations"),
+        default=1,
+        validators=[MinValueValidator(limit_value=MAX_VALIDATIONS_MINIMUM)],
+    )
 
     class Meta:
         ordering = ["points", "name"]
@@ -109,6 +130,36 @@ class Proof(UuidMixin):
 
     def __str__(self) -> str:
         return f"{self.family} - {self.challenge}"
+
+    def clean(self):
+        """Will ensure that an approved proof can be added
+        by checking the maximum number of validations available.
+        The FamilyStatus update is done in a post_save signal receiver.
+        """
+        can_add_validation = (
+            FamilyStatus.objects.get(
+                challenge=self.challenge, family=self.family
+            ).validations
+            < self.challenge.max_validations
+        )
+
+        if not can_add_validation:
+            try:
+                old_status = type(self).objects.get(pk=self.pk).get_status()
+                error = (
+                    old_status is not Proof.ProofStatus.APPROVED
+                    and self.get_status() is Proof.ProofStatus.APPROVED
+                )
+            except type(self).DoesNotExist:
+                error = self.get_status() is Proof.ProofStatus.APPROVED
+            if error:
+                raise ValidationError(
+                    _(
+                        "You have reached the maximum number of validations for this challenge (%(max)s)."
+                    ),
+                    params={"max": self.challenge.max_validations},
+                )
+        return super().clean()
 
     def get_status(self) -> ProofStatus:
         return self.ProofStatus(self.status)
