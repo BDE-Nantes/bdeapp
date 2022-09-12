@@ -79,7 +79,9 @@ INSTALLED_APPS = [
     # External applications.
     "axes",
     "rosetta",
+    "solo",
     # Project applications.
+    "bdeapp.siteconfig",
     "bdeapp.accounts",
     "bdeapp.utils",
     "bdeapp.events",
@@ -372,5 +374,3 @@ IPWARE_META_PRECEDENCE_ORDER = (
 # APPLICATION SETTINGS #
 #                      #
 ########################
-
-MAX_NUMBER_OF_FAMILIES = 5
