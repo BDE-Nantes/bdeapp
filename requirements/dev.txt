@@ -53,6 +53,7 @@ django==3.2.15
     #   django-axes
     #   django-rosetta
     #   django-solo
+    #   djangorestframework
 django-axes==5.39.0
     # via
     #   -c requirements/ci.txt
@@ -75,6 +76,10 @@ django-solo==2.0.0
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
 django-webtest==1.9.10
+    # via
+    #   -c requirements/ci.txt
+    #   -r requirements/ci.txt
+djangorestframework==3.13.1
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
@@ -167,6 +172,7 @@ pytz==2022.2.1
     #   -r requirements/ci.txt
     #   babel
     #   django
+    #   djangorestframework
 requests==2.28.1
     # via
     #   -c requirements/ci.txt
