@@ -9,7 +9,12 @@ import magic
 from bdeapp.challenges.models import Challenge, FamilyStatus, Proof
 from bdeapp.families.models import Family
 
-from .forms import FamilyStatusInlineForm, FamilyStatusInlineFormSet, ProofAdminForm
+from .forms import (
+    ChallengeAdminForm,
+    FamilyStatusInlineForm,
+    FamilyStatusInlineFormSet,
+    ProofAdminForm,
+)
 
 
 class FamilyStatusInline(admin.TabularInline):
@@ -31,8 +36,9 @@ class ChallengeAdmin(admin.ModelAdmin):
     list_display = ("name", "points", "description")
     list_filter = ("points",)
     readonly_fields = ("uuid",)
-    fields = ("uuid", "name", "description", "points")
+    fields = ("uuid", "name", "description", "points", "max_validations")
     search_fields = ("name", "description")
+    form = ChallengeAdminForm
 
 
 @admin.register(Proof)
