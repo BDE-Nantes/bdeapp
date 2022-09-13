@@ -7,6 +7,7 @@ from django.urls import include, path
 from django.views.generic.base import TemplateView
 
 from bdeapp.accounts.views.password_reset import PasswordResetView
+from bdeapp.siteconfig.views import LinkRedirectView
 
 handler500 = "bdeapp.utils.views.server_error"
 admin.site.site_header = "BDE Admin"
@@ -36,6 +37,7 @@ urlpatterns = [
         name="password_reset_complete",
     ),
     path("api/", include("bdeapp.api.urls")),
+    path("to/<slug:slug>", LinkRedirectView.as_view(), name="link_redirect"),
     # Simply show the master template.
     path("", TemplateView.as_view(template_name="master.html"), name="root"),
 ]
