@@ -11,17 +11,17 @@ asgiref==3.5.2
     #   django
 beautifulsoup4==4.11.1
     # via webtest
-certifi==2022.6.15
+certifi==2022.6.15.1
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   requests
-charset-normalizer==2.1.0
+charset-normalizer==2.1.1
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   requests
-coverage==4.5.4
+coverage==6.4.4
     # via -r requirements/test-tools.in
 django==3.2.15
     # via
@@ -60,7 +60,7 @@ djangorestframework==3.13.1
     #   -r requirements/base.txt
 factory-boy==3.2.1
     # via -r requirements/test-tools.in
-faker==14.1.0
+faker==14.2.0
     # via factory-boy
 freezegun==1.2.2
     # via -r requirements/test-tools.in
@@ -90,7 +90,7 @@ python-decouple==3.6
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
-python-dotenv==0.20.0
+python-dotenv==0.21.0
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
@@ -121,7 +121,7 @@ sqlparse==0.4.2
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   django
-urllib3==1.26.11
+urllib3==1.26.12
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
@@ -139,7 +139,7 @@ webtest==3.0.0
     # via django-webtest
 
 # The following packages are considered to be unsafe in a requirements file:
-setuptools==65.1.0
+setuptools==65.3.0
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
