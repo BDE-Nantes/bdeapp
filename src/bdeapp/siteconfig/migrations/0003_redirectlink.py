@@ -6,20 +6,39 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('siteconfig', '0002_siteconfiguration_max_proof_filesize'),
+        ("siteconfig", "0002_siteconfiguration_max_proof_filesize"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='RedirectLink',
+            name="RedirectLink",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('url_slug', models.SlugField(help_text='Your url will be accessible from <code>/to/url_name/</code>', verbose_name='Url name')),
-                ('url', models.URLField(help_text='Url to redirect to', verbose_name='Redirect url')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "url_slug",
+                    models.SlugField(
+                        help_text="Your url will be accessible from <code>/to/url_name/</code>",
+                        verbose_name="Url name",
+                    ),
+                ),
+                (
+                    "url",
+                    models.URLField(
+                        help_text="Url to redirect to", verbose_name="Redirect url"
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Redirect link',
-                'verbose_name_plural': 'Redirect links',
+                "verbose_name": "Redirect link",
+                "verbose_name_plural": "Redirect links",
             },
         ),
     ]

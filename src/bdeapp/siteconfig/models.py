@@ -1,8 +1,8 @@
 from django.db import models
 from django.forms import ValidationError
 from django.utils.functional import lazy
-from django.utils.translation import gettext_lazy as _
 from django.utils.safestring import mark_safe
+from django.utils.translation import gettext_lazy as _
 
 from solo.models import SingletonModel
 
@@ -37,12 +37,11 @@ class SiteConfiguration(SingletonModel):
 class RedirectLink(models.Model):
     url_slug = models.SlugField(
         _("Url name"),
-        help_text=mark_safe_lazy(_("Your url will be accessible from <code>/to/url_name/</code>"))
+        help_text=mark_safe_lazy(
+            _("Your url will be accessible from <code>/to/url_name/</code>")
+        ),
     )
-    url = models.URLField(
-        _("Redirect url"),
-        help_text=_("Url to redirect to")
-    )
+    url = models.URLField(_("Redirect url"), help_text=_("Url to redirect to"))
 
     class Meta:
         verbose_name = _("Redirect link")

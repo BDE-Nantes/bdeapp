@@ -9,6 +9,7 @@ from bdeapp.siteconfig.models import RedirectLink, SiteConfiguration
 class SiteConfigurationAdmin(SingletonModelAdmin):
     pass
 
+
 @admin.register(RedirectLink)
 class RedirectLinkAdmin(admin.ModelAdmin):
     list_display = ("url_slug", "url")
