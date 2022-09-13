@@ -77,6 +77,7 @@ INSTALLED_APPS = [
     # 'django.contrib.humanize',
     # 'django.contrib.sitemaps',
     # External applications.
+    "rest_framework",
     "axes",
     "rosetta",
     "solo",
@@ -331,6 +332,16 @@ RELEASE = config("RELEASE", GIT_SHA)
 # 3RD PARTY LIBRARY SETTINGS #
 #                            #
 ##############################
+
+#
+# Rest Framework
+#
+
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
+    ]
+}
 
 
 #
