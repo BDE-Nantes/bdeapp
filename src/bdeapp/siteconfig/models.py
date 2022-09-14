@@ -40,6 +40,7 @@ class RedirectLink(models.Model):
         help_text=mark_safe_lazy(
             _("Your url will be accessible from <code>/to/url_name/</code>")
         ),
+        unique=True,
     )
     url = models.URLField(_("Redirect url"), help_text=_("Url to redirect to"))
 
