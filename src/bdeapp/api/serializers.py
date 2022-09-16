@@ -59,3 +59,4 @@ class ProofSerializer(serializers.ModelSerializer):
     class Meta:
         model = Proof
         fields = ["uuid", "family", "challenge", "name", "proof_content"]
+        read_only_fields = ["uuid"]
