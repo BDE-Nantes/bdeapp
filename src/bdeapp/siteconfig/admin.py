@@ -14,3 +14,4 @@ class SiteConfigurationAdmin(SingletonModelAdmin):
 class RedirectLinkAdmin(admin.ModelAdmin):
     list_display = ("url_slug", "url")
     search_fields = ("url_slug", "url")
+    readonly_fields = ("counter",)
