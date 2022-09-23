@@ -7,4 +7,6 @@ from bdeapp.siteconfig.models import RedirectLink
 class LinkRedirectView(RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         redirect_link = get_object_or_404(RedirectLink, url_slug=kwargs["slug"])
+        redirect_link.counter += 1
+        redirect_link.save()
         return redirect_link.url

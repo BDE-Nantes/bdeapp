@@ -44,6 +44,10 @@ class RedirectLink(models.Model):
     )
     url = models.URLField(_("Redirect url"), help_text=_("Url to redirect to"))
 
+    counter = models.PositiveIntegerField(
+        _("Visits"), help_text=_("Number of visits"), default=0
+    )
+
     class Meta:
         verbose_name = _("Redirect link")
         verbose_name_plural = _("Redirect links")
