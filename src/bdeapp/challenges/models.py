@@ -5,8 +5,9 @@ from django.db import models
 from django.forms import ValidationError
 from django.utils.translation import gettext_lazy as _
 
+from bdeapp.events.models import Event
 from bdeapp.siteconfig.models import SiteConfiguration
-from bdeapp.utils.models import UuidMixin
+from bdeapp.utils.models import PublishedMixin, UuidMixin
 from bdeapp.utils.storage import uuid_path
 from bdeapp.utils.validators import FileValidator
 
@@ -58,7 +59,7 @@ class FamilyStatus(models.Model):
         super().save()
 
 
-class Challenge(UuidMixin):
+class Challenge(PublishedMixin, UuidMixin):
     name = models.CharField(_("Name"), max_length=70, unique=True)
     description = models.TextField(
         _("Description"),
@@ -74,6 +75,19 @@ class Challenge(UuidMixin):
         validators=[MinValueValidator(limit_value=MAX_VALIDATIONS_MINIMUM)],
     )
 
+    related_event = models.ForeignKey(
+        Event,
+        verbose_name=_("Related event"),
+        limit_choices_to={"published": True},
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+    )
+
+    start_date = models.DateTimeField(_("Start date"), null=True, blank=True)
+
+    end_date = models.DateTimeField(_("End date"), null=True, blank=True)
+
     class Meta:
         ordering = ["points", "name"]
         verbose_name = _("Challenge")
@@ -81,6 +95,17 @@ class Challenge(UuidMixin):
 
     def __str__(self) -> str:
         return self.name
+
+    def clean(self):
+        if (
+            self.start_date is not None
+            and self.end_date is not None
+            and self.end_date <= self.start_date
+        ):
+            raise ValidationError(
+                {"end_date": _("End date must be after start date")},
+                code="invalid_date",
+            )
 
 
 class Proof(UuidMixin):
@@ -93,7 +118,10 @@ class Proof(UuidMixin):
         "families.Family", verbose_name=_("Family"), on_delete=models.CASCADE
     )
     challenge = models.ForeignKey(
-        Challenge, verbose_name=_("Challenge"), on_delete=models.CASCADE
+        Challenge,
+        verbose_name=_("Challenge"),
+        on_delete=models.CASCADE,
+        limit_choices_to={"published": True},
     )
     name = models.CharField(
         _("Name"),
@@ -158,6 +186,7 @@ class Proof(UuidMixin):
                         "You have reached the maximum number of validations for this challenge (%(max)s)."
                     ),
                     params={"max": self.challenge.max_validations},
+                    code="max_validations",
                 )
         return super().clean()
 

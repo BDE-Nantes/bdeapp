@@ -26,7 +26,7 @@ class FamilyViewSet(viewsets.ReadOnlyModelViewSet):
 
 class ChallengeViewSet(viewsets.ReadOnlyModelViewSet):
     lookup_field = "uuid"
-    queryset = Challenge.objects.all()
+    queryset = Challenge.objects.filter(published=True)
     serializer_class = ChallengeSerializer
 
 
