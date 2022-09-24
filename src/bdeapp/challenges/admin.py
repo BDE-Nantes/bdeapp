@@ -1,8 +1,8 @@
 import fnmatch
 
-from django.contrib import admin
+from django.contrib import admin, messages
 from django.utils.safestring import mark_safe
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext_lazy as _, ngettext
 
 import magic
 
@@ -33,12 +33,37 @@ class FamilyStatusInline(admin.TabularInline):
 @admin.register(Challenge)
 class ChallengeAdmin(admin.ModelAdmin):
     inlines = [FamilyStatusInline]
-    list_display = ("name", "points", "description")
-    list_filter = ("points",)
+    list_display = ("name", "points", "description", "published")
+    list_filter = ("points", "published")
     readonly_fields = ("uuid",)
-    fields = ("uuid", "name", "description", "points", "max_validations")
+    fields = (
+        "uuid",
+        "name",
+        "description",
+        "published",
+        "points",
+        "max_validations",
+        "related_event",
+        "start_date",
+        "end_date",
+    )
     search_fields = ("name", "description")
+    actions = ("make_published",)
     form = ChallengeAdminForm
+
+    @admin.action(description=_("Mark as published"))
+    def make_published(self, request, queryset):
+        updated = queryset.update(published=True)
+        self.message_user(
+            request,
+            ngettext(
+                "%d challenge was successfully marked as published.",
+                "%d challenges were successfully marked as published.",
+                updated,
+            )
+            % updated,
+            messages.SUCCESS,
+        )
 
 
 @admin.register(Proof)

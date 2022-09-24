@@ -35,6 +35,7 @@ class FamilyStatusSerializer(serializers.ModelSerializer):
 
 class ChallengeSerializer(serializers.ModelSerializer):
     families_status = FamilyStatusSerializer(many=True, read_only=True)
+    related_event = serializers.SlugRelatedField(slug_field="uuid", read_only=True)
 
     class Meta:
         model = Challenge
@@ -45,6 +46,9 @@ class ChallengeSerializer(serializers.ModelSerializer):
             "points",
             "max_validations",
             "families_status",
+            "related_event",
+            "start_date",
+            "end_date",
         ]
 
 
