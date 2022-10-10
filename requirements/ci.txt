@@ -28,6 +28,7 @@ django==3.2.15
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   django-axes
+    #   django-cors-headers
     #   django-rosetta
     #   django-solo
     #   djangorestframework
@@ -36,6 +37,10 @@ django-axes==5.39.0
     #   -c requirements/base.txt
     #   -r requirements/base.txt
 django-cleanup==6.0.0
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
+django-cors-headers==3.13.0
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt

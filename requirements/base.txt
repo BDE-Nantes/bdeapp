@@ -14,12 +14,15 @@ django==3.2.15
     # via
     #   -r requirements/base.in
     #   django-axes
+    #   django-cors-headers
     #   django-rosetta
     #   django-solo
     #   djangorestframework
 django-axes==5.39.0
     # via -r requirements/base.in
 django-cleanup==6.0.0
+    # via -r requirements/base.in
+django-cors-headers==3.13.0
     # via -r requirements/base.in
 django-ipware==4.0.2
     # via django-axes
