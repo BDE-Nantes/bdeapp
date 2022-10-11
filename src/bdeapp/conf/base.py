@@ -78,6 +78,7 @@ INSTALLED_APPS = [
     # 'django.contrib.sitemaps',
     # External applications.
     "corsheaders",
+    "colorfield",
     "rest_framework",
     "axes",
     "rosetta",
@@ -339,9 +340,7 @@ RELEASE = config("RELEASE", GIT_SHA)
 # CORS headers
 #
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:9000"
-]
+CORS_ALLOWED_ORIGINS = ["http://localhost:9000"]
 
 #
 # Rest Framework

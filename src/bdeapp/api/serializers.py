@@ -3,6 +3,7 @@ from rest_framework import serializers
 from bdeapp.challenges.models import Challenge, FamilyStatus, Proof
 from bdeapp.events.models import Event
 from bdeapp.families.models import Family
+from bdeapp.siteconfig.models import School, SiteConfiguration
 
 
 class EventSerializer(serializers.ModelSerializer):
@@ -64,3 +65,17 @@ class ProofSerializer(serializers.ModelSerializer):
         model = Proof
         fields = ["uuid", "family", "challenge", "name", "proof_content"]
         read_only_fields = ["uuid"]
+
+
+class SchoolSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = School
+        fields = ["name", "color"]
+
+
+class SiteConfigurationSerializer(serializers.ModelSerializer):
+    school = SchoolSerializer(read_only=True)
+
+    class Meta:
+        model = SiteConfiguration
+        fields = ["school"]

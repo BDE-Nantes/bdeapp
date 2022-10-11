@@ -1,0 +1,130 @@
+[
+    {
+        "model": "siteconfig.School",
+        "pk": 1,
+        "fields": {
+            "name": "Polytech Angers",
+            "color": "#F0876F"
+        }
+    },
+    {
+        "model": "siteconfig.School",
+        "pk": 2,
+        "fields": {
+            "name": "Polytech Annecy-Chambéry",
+            "color": "#E6007E"
+        }
+    },
+    {
+        "model": "siteconfig.School",
+        "pk": 3,
+        "fields": {
+            "name": "Polytech Clermont",
+            "color": "#86BC24"
+        }
+    },
+    {
+        "model": "siteconfig.School",
+        "pk": 4,
+        "fields": {
+            "name": "Polytech Grenoble",
+            "color": "#BF9C71"
+        }
+    },
+    {
+        "model": "siteconfig.School",
+        "pk": 5,
+        "fields": {
+            "name": "Polytech Lille",
+            "color": "#E4022E"
+        }
+    },
+    {
+        "model": "siteconfig.School",
+        "pk": 6,
+        "fields": {
+            "name": "Polytech Lyon",
+            "color": "#781C00"
+        }
+    },
+    {
+        "model": "siteconfig.School",
+        "pk": 7,
+        "fields": {
+            "name": "Polytech Marseille",
+            "color": "#009CB4"
+        }
+    },
+    {
+        "model": "siteconfig.School",
+        "pk": 8,
+        "fields": {
+            "name": "Polytech Montpellier",
+            "color": "#2581C4"
+        }
+    },
+    {
+        "model": "siteconfig.School",
+        "pk": 9,
+        "fields": {
+            "name": "Polytech Nancy",
+            "color": "#E63023"
+        }
+    },
+    {
+        "model": "siteconfig.School",
+        "pk": 10,
+        "fields": {
+            "name": "Polytech Nantes",
+            "color": "#FFDD00"
+        }
+    },
+    {
+        "model": "siteconfig.School",
+        "pk": 11,
+        "fields": {
+            "name": "Polytech Nantes - Gavy",
+            "color": "#FFDD00"
+        }
+    },
+    {
+        "model": "siteconfig.School",
+        "pk": 12,
+        "fields": {
+            "name": "Polytech Nice Sophia",
+            "color": "#C7D301"
+        }
+    },
+    {
+        "model": "siteconfig.School",
+        "pk": 13,
+        "fields": {
+            "name": "Polytech Orléans",
+            "color": "#F39200"
+        }
+    },
+    {
+        "model": "siteconfig.School",
+        "pk": 14,
+        "fields": {
+            "name": "Polytech Paris-Saclay",
+            "color": "#A4A2B4"
+        }
+    },
+    {
+        "model": "siteconfig.School",
+        "pk": 15,
+        "fields": {
+            "name": "Polytech Sorbonne",
+            "color": "#CABEBA"
+        }
+    },
+    {
+        "model": "siteconfig.School",
+        "pk": 16,
+        "fields": {
+            "name": "Polytech Tours",
+            "color": "#A84D97"
+        }
+    }
+]

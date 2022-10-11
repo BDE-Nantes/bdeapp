@@ -15,6 +15,7 @@ django-solo
 # API libraries
 djangorestframework
 django-cors-headers
+django-colorfield
 # django-extra-fields
 # django-filter
 # drf-yasg  # api documentation
