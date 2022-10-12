@@ -40,6 +40,10 @@ django-cleanup==6.0.0
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
+django-colorfield==0.7.2
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
 django-cors-headers==3.13.0
     # via
     #   -c requirements/base.txt
@@ -78,6 +82,7 @@ pillow==9.2.0
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
+    #   django-colorfield
 polib==1.1.1
     # via
     #   -c requirements/base.txt

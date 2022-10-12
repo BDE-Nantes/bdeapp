@@ -4,9 +4,23 @@ from django.utils.functional import lazy
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 
+from colorfield.fields import ColorField
 from solo.models import SingletonModel
 
 mark_safe_lazy = lazy(mark_safe, str)
+
+
+class School(models.Model):
+    name = models.CharField(_("School name"), max_length=255)
+
+    color = ColorField(_("School color"))
+
+    class Meta:
+        verbose_name = _("School")
+        verbose_name_plural = _("Schools")
+
+    def __str__(self) -> str:
+        return self.name
 
 
 class SiteConfiguration(SingletonModel):
@@ -16,6 +30,10 @@ class SiteConfiguration(SingletonModel):
 
     max_proof_filesize = models.PositiveIntegerField(
         _("Maximum proof file size (MB)"), default=100
+    )
+
+    school = models.ForeignKey(
+        School, verbose_name=_("School"), null=True, on_delete=models.SET_NULL
     )
 
     class Meta:

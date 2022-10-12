@@ -63,6 +63,10 @@ django-cleanup==6.0.0
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
+django-colorfield==0.7.2
+    # via
+    #   -c requirements/ci.txt
+    #   -r requirements/ci.txt
 django-cors-headers==3.13.0
     # via
     #   -c requirements/ci.txt
@@ -136,6 +140,7 @@ pillow==9.2.0
     # via
     #   -c requirements/ci.txt
     #   -r requirements/ci.txt
+    #   django-colorfield
 pip-tools==6.8.0
     # via -r requirements/dev.in
 platformdirs==2.5.2
