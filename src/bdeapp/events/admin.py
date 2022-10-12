@@ -14,6 +14,10 @@ class EventAdmin(admin.ModelAdmin):
             },
         ),
         (_("Description"), {"fields": ("description", "long_description")}),
+        (
+            _("Links"),
+            {"fields": ("facebook_link", "instagram_link", "maps_link", "misc_link")},
+        ),
     )
 
     date_hierarchy = "date"

@@ -11,6 +11,11 @@ class Event(PublishedMixin, UuidMixin):
     description = models.TextField(_("Description"), max_length=85)
     long_description = models.TextField(_("Long description"), max_length=230)
 
+    facebook_link = models.URLField(_("Facebook link"), null=True, blank=True)
+    instagram_link = models.URLField(_("Instagram link"), null=True, blank=True)
+    maps_link = models.URLField(_("Google Maps link"), null=True, blank=True)
+    misc_link = models.URLField(_("Miscellaneous link"), null=True, blank=True)
+
     class Meta(PublishedMixin.Meta):
         verbose_name = _("Event")
         verbose_name_plural = _("Events")

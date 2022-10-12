@@ -7,6 +7,15 @@ from bdeapp.siteconfig.models import School, SiteConfiguration
 
 
 class EventSerializer(serializers.ModelSerializer):
+
+    links = serializers.SerializerMethodField("get_links")
+
+    def get_links(self, obj):
+        return {
+            k: getattr(obj, f"{k}_link")
+            for k in ["facebook", "instagram", "maps", "misc"]
+        }
+
     class Meta:
         model = Event
         fields = [
@@ -17,6 +26,7 @@ class EventSerializer(serializers.ModelSerializer):
             "time",
             "description",
             "long_description",
+            "links",
         ]
 
 
