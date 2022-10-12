@@ -20,7 +20,6 @@ class EventSerializer(serializers.ModelSerializer):
         model = Event
         fields = [
             "uuid",
-            "published",
             "name",
             "date",
             "time",
