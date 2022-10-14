@@ -12,7 +12,7 @@ class EventSerializer(serializers.ModelSerializer):
 
     def get_links(self, obj):
         return {
-            k: getattr(obj, f"{k}_link")
+            k: getattr(obj, f"{k}_link", None)
             for k in ["facebook", "instagram", "maps", "misc"]
         }
 
