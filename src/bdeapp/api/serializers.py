@@ -1,3 +1,5 @@
+from django.db.models import F, Sum
+
 from rest_framework import serializers
 
 from bdeapp.challenges.models import Challenge, FamilyStatus, Proof
@@ -30,9 +32,19 @@ class EventSerializer(serializers.ModelSerializer):
 
 
 class FamilySerializer(serializers.ModelSerializer):
+
+    points = serializers.SerializerMethodField("get_points")
+
+    def get_points(self, obj):
+        return (
+            FamilyStatus.objects.filter(family=obj)
+            .annotate(total_points=F("validations") * F("challenge__points"))
+            .aggregate(Sum("total_points"))["total_points__sum"]
+        )
+
     class Meta:
         model = Family
-        fields = ["uuid", "name", "image"]
+        fields = ["uuid", "name", "image", "points"]
 
 
 class FamilyStatusSerializer(serializers.ModelSerializer):
