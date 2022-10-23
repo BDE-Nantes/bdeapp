@@ -1,5 +1,5 @@
 import fnmatch
-from typing import Callable, Optional, Union, Iterable
+from typing import Callable, Iterable, Optional, Union
 
 from django.core.exceptions import ValidationError
 from django.db.models.fields.files import ImageFieldFile
