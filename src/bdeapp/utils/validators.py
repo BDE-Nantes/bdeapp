@@ -1,5 +1,5 @@
 import fnmatch
-from typing import Callable, Optional, Union
+from typing import Callable, Optional, Union, Iterable
 
 from django.core.exceptions import ValidationError
 from django.db.models.fields.files import ImageFieldFile
@@ -32,7 +32,7 @@ class ImageSizeValidator:
 
 
 @deconstructible
-class FileValidator(object):
+class FileValidator:
     error_messages = {
         "max_size": _(
             "Ensure this file size is not greater than %(max_size)s. Your file size is %(size)s."
@@ -47,7 +47,7 @@ class FileValidator(object):
         self,
         max_size: Optional[Union[int, Callable[[], int]]] = None,
         min_size: Optional[Union[int, Callable[[], int]]] = None,
-        content_types=(),
+        content_types: Optional[Iterable[str]] = None,
     ):
         self.max_size = max_size
         self.min_size = min_size
@@ -77,7 +77,7 @@ class FileValidator(object):
                 },
             )
 
-        if self.content_types:
+        if self.content_types is not None:
             file_content_type = magic.from_buffer(data.read(2048), mime=True)
             data.seek(0)
 
