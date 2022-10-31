@@ -48,7 +48,7 @@ class FileValidator:
         max_size: Optional[Union[int, Callable[[], int]]] = None,
         min_size: Optional[Union[int, Callable[[], int]]] = None,
         content_types: Optional[Iterable[str]] = None,
-    ):
+    ) -> None:
         self.max_size = max_size
         self.min_size = min_size
         self.content_types = content_types
@@ -93,7 +93,7 @@ class FileValidator:
                     params={"content_type": file_content_type},
                 )
 
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         return (
             isinstance(other, FileValidator)
             and self.max_size == other.max_size
